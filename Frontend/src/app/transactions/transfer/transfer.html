@@ -1,0 +1,42 @@
+<form (ngSubmit)="transfer()">
+  <div>
+    <label for="senderId">Sender ID</label>
+    <input
+      id="senderId"
+      name="senderId"
+      type="number"
+      [(ngModel)]="transferData.senderId"
+      min="1"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="receiverId">Receiver ID</label>
+    <input
+      id="receiverId"
+      name="receiverId"
+      type="number"
+      [(ngModel)]="transferData.receiverId"
+      min="1"
+      required
+    />
+  </div>
+
+  <div>
+    <label for="amount">Amount</label>
+    <input
+      id="amount"
+      name="amount"
+      type="number"
+      [(ngModel)]="transferData.amount"
+      min="1"
+      required
+    />
+  </div>
+
+  <button type="submit">Transfer</button>
+</form>
+
+<p class="success" *ngIf="successMessage">{{ successMessage }}</p>
+<p class="error" *ngIf="errorMessage">{{ errorMessage }}</p>

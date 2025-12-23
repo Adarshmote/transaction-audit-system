@@ -1,0 +1,35 @@
+<div class="transaction-history">
+  <div class="history-header">
+    <h3>Recent Transactions</h3>
+    <button (click)="loadTransactions()" class="refresh-btn">Refresh List</button>
+  </div>
+
+  <div class="table-wrapper">
+    <table *ngIf="transactions.length > 0; else emptyState">
+      <thead>
+        <tr>
+          <th>Timestamp</th>
+          <th>Flow</th>
+          <th>Amount</th>
+          <th>Status</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let t of transactions" [ngClass]="{'row-error': t.status === 'Failed'}">
+          <td>{{ t.date | date:'short' }}</td>
+          <td>ID: {{ t.senderId }} ➔ ID: {{ t.receiverId }}</td>
+          <td><strong>${{ t.amount }}</strong></td>
+          <td>
+            <span class="badge" [ngClass]="t.status === 'Success' ? 'bg-success' : 'bg-danger'">
+              {{ t.status }}
+            </span>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+  </div>
+
+  <ng-template #emptyState>
+    <div class="no-data">No transactions found.</div>
+  </ng-template>
+</div>
